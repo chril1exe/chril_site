@@ -375,14 +375,204 @@
             100% { opacity: 0; }
         }
         
-        /* موبايل */
-        @media (max-width: 768px) {
+        /* Responsive Design */
+        
+        /* شاشات كبيرة جداً */
+        @media (min-width: 1200px) {
+            .error-404 { font-size: 8rem; }
+            .zatili-name { font-size: 4rem; }
+            .error-message { font-size: 2rem; }
+            .zatili-pixel { width: 160px; height: 160px; }
+            .snake-game { width: 500px; height: 500px; }
+            .terminal-console { height: 150px; font-size: 16px; }
+        }
+        
+        /* التابلت العادي */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .error-404 { font-size: 5rem; }
+            .zatili-name { font-size: 2.5rem; }
+            .error-message { font-size: 1.3rem; }
+            .pixel-btn { font-size: 1.3rem; padding: 12px 20px; }
+            .zatili-pixel { width: 112px; height: 112px; }
+            .snake-game { width: 350px; height: 350px; }
+        }
+        
+        /* التابلت الصغير والموبايل الكبير */
+        @media (max-width: 768px) and (min-width: 481px) {
             .error-404 { font-size: 4rem; }
             .zatili-name { font-size: 2rem; }
-            .error-message { font-size: 1.2rem; padding: 0 20px; }
-            .pixel-buttons { flex-direction: column; align-items: center; }
+            .error-message { 
+                font-size: 1.2rem; 
+                padding: 0 30px;
+                margin-bottom: 25px;
+            }
+            .pixel-buttons { 
+                flex-direction: column; 
+                align-items: center;
+                gap: 15px;
+            }
+            .pixel-btn {
+                width: 200px;
+                padding: 12px 15px;
+                font-size: 1.2rem;
+            }
             .zatili-pixel { width: 96px; height: 96px; }
-            .snake-game { width: 300px; height: 300px; }
+            .snake-game { width: 320px; height: 320px; }
+            .terminal-console { 
+                height: 100px; 
+                font-size: 12px;
+                padding: 8px;
+            }
+            .container { padding: 15px; }
+        }
+        
+        /* الموبايل العادي */
+        @media (max-width: 480px) and (min-width: 321px) {
+            .error-404 { 
+                font-size: 3rem; 
+                margin-bottom: 15px;
+            }
+            .zatili-name { 
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+            .error-message { 
+                font-size: 1rem; 
+                padding: 0 20px;
+                margin-bottom: 20px;
+                line-height: 1.3;
+            }
+            .pixel-buttons { 
+                flex-direction: column; 
+                align-items: center;
+                gap: 12px;
+            }
+            .pixel-btn {
+                width: 180px;
+                padding: 10px 12px;
+                font-size: 1.1rem;
+            }
+            .zatili-pixel { 
+                width: 80px; 
+                height: 80px;
+                margin-bottom: 20px;
+            }
+            .snake-game { width: 280px; height: 280px; }
+            .terminal-console { 
+                height: 80px; 
+                font-size: 10px;
+                padding: 5px;
+            }
+            .container { padding: 10px; }
+            .game-info { font-size: 1.2rem; }
+            .close-game { font-size: 1rem; padding: 8px 15px; }
+        }
+        
+        /* الموبايل الصغير جداً */
+        @media (max-width: 320px) {
+            .error-404 { 
+                font-size: 2.5rem; 
+                margin-bottom: 10px;
+            }
+            .zatili-name { 
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+            .error-message { 
+                font-size: 0.9rem; 
+                padding: 0 15px;
+                margin-bottom: 15px;
+                line-height: 1.2;
+            }
+            .pixel-buttons { 
+                flex-direction: column; 
+                align-items: center;
+                gap: 10px;
+            }
+            .pixel-btn {
+                width: 160px;
+                padding: 8px 10px;
+                font-size: 1rem;
+            }
+            .zatili-pixel { 
+                width: 64px; 
+                height: 64px;
+                margin-bottom: 15px;
+            }
+            .snake-game { width: 240px; height: 240px; }
+            .terminal-console { 
+                height: 60px; 
+                font-size: 8px;
+                padding: 3px;
+            }
+            .container { padding: 8px; }
+            .game-info { font-size: 1rem; }
+            .close-game { font-size: 0.9rem; padding: 6px 12px; }
+            .pixel-cursor { width: 12px; height: 12px; }
+        }
+        
+        /* الاتجاه الأفقي للموبايل والتابلت */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .container {
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                gap: 20px;
+            }
+            .zatili-pixel { 
+                width: 80px; 
+                height: 80px;
+                margin-bottom: 0;
+            }
+            .terminal-text {
+                margin-bottom: 20px;
+                flex: 1;
+                max-width: 400px;
+            }
+            .error-404 { font-size: 3rem; margin-bottom: 10px; }
+            .zatili-name { font-size: 1.5rem; margin-bottom: 10px; }
+            .error-message { font-size: 1rem; margin-bottom: 15px; }
+            .terminal-console { height: 50px; font-size: 8px; }
+            .pixel-buttons { gap: 10px; }
+            .pixel-btn { padding: 8px 15px; font-size: 1rem; }
+        }
+        
+        /* Touch-friendly للأجهزة اللمسية */
+        @media (hover: none) and (pointer: coarse) {
+            .pixel-btn {
+                min-height: 44px;
+                min-width: 44px;
+                touch-action: manipulation;
+            }
+            .close-game {
+                min-height: 44px;
+                min-width: 44px;
+                touch-action: manipulation;
+            }
+            .pixel-cursor { display: none; }
+        }
+        
+        /* الشاشات عالية الدقة */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .pixel-face,
+            .snake-pixel,
+            .food-pixel {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: pixelated;
+            }
+        }
+        
+        /* تحسينات الأداء للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .glitch-bg {
+                animation-duration: 4s;
+            }
+            .creepy-eyes {
+                display: none;
+            }
+            .digital-noise {
+                opacity: 0.5;
+            }
         }
     </style>
 </head>
@@ -452,16 +642,23 @@
     </div>
 
     <script>
-        // تتبع الماوس المخصص
+        // تتبع الماوس المخصص (فقط للأجهزة غير اللمسية)
         const cursor = document.querySelector('.pixel-cursor');
         let mouseX = 0, mouseY = 0;
         
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = (Math.floor(mouseX / 8) * 8) + 'px';
-            cursor.style.top = (Math.floor(mouseY / 8) * 8) + 'px';
-        });
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        if (!isTouchDevice) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.left = (Math.floor(mouseX / 8) * 8) + 'px';
+                cursor.style.top = (Math.floor(mouseY / 8) * 8) + 'px';
+            });
+        } else {
+            // إخفاء الماوس المخصص على الأجهزة اللمسية
+            cursor.style.display = 'none';
+        }
 
         // تأثيرات صوتية محاكة
         function playPixelSound() {
@@ -576,7 +773,7 @@
 
         const snakeGame = new SnakeGame();
 
-        // التحكم في اللعبة
+        // التحكم في اللعبة - لوحة المفاتيح
         document.addEventListener('keydown', (e) => {
             if (!snakeGame.gameRunning) return;
             
@@ -605,11 +802,75 @@
             e.preventDefault();
         });
 
+        // التحكم باللمس للأجهزة المحمولة
+        let touchStartX, touchStartY;
+        
+        document.addEventListener('touchstart', (e) => {
+            if (!snakeGame.gameRunning) return;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: false });
+
+        document.addEventListener('touchend', (e) => {
+            if (!snakeGame.gameRunning || !touchStartX || !touchStartY) return;
+            
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+            
+            const minSwipeDistance = 30;
+            
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                // حركة أفقية
+                if (Math.abs(deltaX) > minSwipeDistance) {
+                    if (deltaX > 0 && snakeGame.direction !== 'left') {
+                        snakeGame.direction = 'right';
+                    } else if (deltaX < 0 && snakeGame.direction !== 'right') {
+                        snakeGame.direction = 'left';
+                    }
+                }
+            } else {
+                // حركة عمودية
+                if (Math.abs(deltaY) > minSwipeDistance) {
+                    if (deltaY > 0 && snakeGame.direction !== 'up') {
+                        snakeGame.direction = 'down';
+                    } else if (deltaY < 0 && snakeGame.direction !== 'down') {
+                        snakeGame.direction = 'up';
+                    }
+                }
+            }
+            
+            touchStartX = null;
+            touchStartY = null;
+            e.preventDefault();
+        }, { passive: false });
+
         // أزرار التحكم
         document.getElementById('gameBtn').addEventListener('click', () => {
             document.getElementById('gameOverlay').style.display = 'flex';
             snakeGame.reset();
             snakeGame.draw();
+            
+            // إضافة تعليمات للأجهزة المختلفة
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const gameInfo = document.querySelector('.game-info');
+            
+            if (isMobile) {
+                gameInfo.innerHTML = `
+                    <div>ZATILI SNAKE GAME</div>
+                    <div>SCORE: <span id="score">0</span></div>
+                    <div>اسحب بإصبعك للتحكم في الاتجاه</div>
+                `;
+            } else {
+                gameInfo.innerHTML = `
+                    <div>ZATILI SNAKE GAME</div>
+                    <div>SCORE: <span id="score">0</span></div>
+                    <div>استخدم WASD أو الأسهم للتحكم</div>
+                `;
+            }
+            
             setTimeout(() => snakeGame.start(), 1000);
         });
 
