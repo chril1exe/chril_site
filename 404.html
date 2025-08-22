@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - زطيلي في الفضاء!</title>
+    <title>404 - زطيلي.exe has stopped working</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
         
         * {
             margin: 0;
@@ -14,47 +14,58 @@
         }
         
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'VT323', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
             overflow: hidden;
-            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
             height: 100vh;
-            position: relative;
             cursor: none;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
         }
         
-        /* النجوم المتحركة */
-        .stars {
-            position: absolute;
+        /* الخلفية المتحركة والمشوشة */
+        .glitch-bg {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 98%, #ff0000 100%),
+                linear-gradient(90deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+            animation: glitchBg 3s infinite;
             z-index: 1;
         }
         
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite alternate;
+        @keyframes glitchBg {
+            0%, 90% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-1px, 1px); }
+            98% { transform: translate(1px, -1px); }
+            100% { transform: translate(0); }
         }
         
-        @keyframes twinkle {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        /* الماوس المخصص */
-        .custom-cursor {
+        /* الماوس المخصص بستايل بيكسل */
+        .pixel-cursor {
             position: fixed;
-            width: 20px;
-            height: 20px;
-            background: #ff6b6b;
-            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            background: #ff0000;
             pointer-events: none;
             z-index: 9999;
-            transition: all 0.1s ease;
-            box-shadow: 0 0 20px #ff6b6b;
+            image-rendering: pixelated;
+            box-shadow: 
+                0 0 0 1px #ffffff,
+                1px 1px 0 1px #aa0000;
+            animation: cursorBlink 1s infinite;
+        }
+        
+        @keyframes cursorBlink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.7; }
         }
         
         /* الحاوي الرئيسي */
@@ -67,553 +78,617 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
+            padding: 20px;
         }
         
-        /* شخصية زطيلي */
-        .zatili-character {
-            width: 200px;
-            height: 200px;
+        /* شخصية زطيلي بستايل بيكسل آرت */
+        .zatili-pixel {
+            width: 128px;
+            height: 128px;
             margin-bottom: 30px;
             position: relative;
-            animation: float 3s ease-in-out infinite;
+            animation: pixelFloat 2s ease-in-out infinite;
+            image-rendering: pixelated;
         }
         
-        .zatili-face {
+        .pixel-face {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #ff9a56, #ffad56);
-            border-radius: 50%;
+            background: 
+                /* الوجه */
+                radial-gradient(circle at 50% 50%, #8B4513 30%, transparent 30%),
+                /* العين اليسرى */
+                radial-gradient(circle at 35% 40%, #ff0000 8%, transparent 8%),
+                /* العين اليمنى */
+                radial-gradient(circle at 65% 40%, #ff0000 8%, transparent 8%),
+                /* الفم */
+                linear-gradient(to right, transparent 40%, #000000 40%, #000000 60%, transparent 60%);
+            background-size: 
+                100% 100%,
+                100% 100%,
+                100% 100%,
+                100% 20%;
+            background-position: 
+                center,
+                center,
+                center,
+                center 70%;
+            background-repeat: no-repeat;
             position: relative;
-            border: 5px solid #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid #333;
         }
         
-        .zatili-eyes {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-        }
-        
-        .eye {
-            width: 25px;
-            height: 25px;
-            background: #333;
-            border-radius: 50%;
-            position: relative;
-            animation: blink 4s infinite;
-        }
-        
-        .eye::after {
+        .pixel-face::before {
             content: '';
             position: absolute;
-            top: 3px;
-            right: 3px;
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
-        }
-        
-        .zatili-mouth {
-            position: absolute;
-            bottom: 35%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
+            top: -10px;
+            left: 20px;
+            width: 80px;
             height: 20px;
-            border: 3px solid #333;
-            border-top: none;
-            border-radius: 0 0 40px 40px;
-            animation: smile 2s ease-in-out infinite alternate;
+            background: 
+                linear-gradient(90deg, #444 0%, #666 50%, #444 100%),
+                linear-gradient(90deg, transparent 30%, #00ff00 30%, #00ff00 70%, transparent 70%);
+            background-size: 100% 100%, 100% 50%;
+            background-position: center, center;
+            border: 1px solid #333;
         }
         
-        .zatili-hat {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 40px;
-            background: #4ecdc4;
-            border-radius: 20px;
-            border: 3px solid #fff;
-        }
-        
-        .zatili-hat::before {
-            content: '💻';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-        }
-        
-        @keyframes float {
+        @keyframes pixelFloat {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-8px); }
         }
         
-        @keyframes blink {
-            0%, 90%, 100% { transform: scaleY(1); }
-            95% { transform: scaleY(0.1); }
-        }
-        
-        @keyframes smile {
-            0% { width: 40px; }
-            100% { width: 50px; }
-        }
-        
-        /* النص الرئيسي */
-        .main-text {
-            margin-bottom: 30px;
+        /* النص الرئيسي بستايل Terminal */
+        .terminal-text {
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px currentColor;
         }
         
         .error-404 {
-            font-size: 8rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+            font-size: 6rem;
+            font-weight: normal;
+            color: #ff0000;
+            margin-bottom: 20px;
+            animation: glitchText 4s infinite;
+            text-shadow: 
+                2px 0 0 #00ffff,
+                -2px 0 0 #ff00ff;
+        }
+        
+        @keyframes glitchText {
+            0%, 90% { 
+                transform: translate(0);
+                text-shadow: 2px 0 0 #00ffff, -2px 0 0 #ff00ff;
+            }
+            91% { 
+                transform: translate(-2px, 2px);
+                text-shadow: 4px 0 0 #00ffff, -4px 0 0 #ff00ff;
+            }
+            92% { 
+                transform: translate(2px, -2px);
+                text-shadow: -4px 0 0 #00ffff, 4px 0 0 #ff00ff;
+            }
+            93% { 
+                transform: translate(-1px, 1px);
+                text-shadow: 2px 0 0 #00ffff, -2px 0 0 #ff00ff;
+            }
+            94% { 
+                transform: translate(1px, -1px);
+                text-shadow: -2px 0 0 #00ffff, 2px 0 0 #ff00ff;
+            }
+            95% { transform: translate(0); }
         }
         
         .zatili-name {
             font-size: 3rem;
-            font-weight: 700;
-            color: #4ecdc4;
-            margin: 20px 0;
-            animation: bounce 2s infinite;
+            color: #00ff00;
+            margin-bottom: 20px;
+            animation: typewriter 3s steps(6) infinite;
         }
         
-        .message {
+        @keyframes typewriter {
+            0%, 50% { width: 0; }
+            100% { width: 100%; }
+        }
+        
+        .error-message {
             font-size: 1.5rem;
-            margin-bottom: 40px;
-            color: #ddd;
+            color: #ffff00;
+            margin-bottom: 30px;
             max-width: 600px;
-            line-height: 1.6;
+            line-height: 1.4;
+            animation: flicker 2s infinite;
         }
         
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes flicker {
+            0%, 95% { opacity: 1; }
+            96%, 99% { opacity: 0.1; }
+            100% { opacity: 1; }
         }
         
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        /* الأزرار التفاعلية */
-        .buttons {
+        /* أزرار الألعاب القديمة */
+        .pixel-buttons {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
         }
         
-        .btn {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 50px;
+        .pixel-btn {
+            padding: 15px 25px;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            border: 3px outset #666;
+            background: #333;
+            color: #00ff00;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.1s ease;
+            image-rendering: pixelated;
+            text-transform: uppercase;
         }
         
-        .btn-home {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        .pixel-btn:hover {
+            background: #444;
+            border: 3px inset #666;
+            color: #ffff00;
+            text-shadow: 0 0 5px currentColor;
         }
         
-        .btn-game {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            box-shadow: 0 5px 15px rgba(78,205,196,0.4);
+        .pixel-btn:active {
+            background: #222;
+            border: 3px inset #333;
+            transform: translate(1px, 1px);
         }
         
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.5s ease;
-        }
-        
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* لعبة بسيطة */
-        .game-area {
+        /* لعبة Snake بسيطة */
+        .game-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.9);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
         
-        .game-content {
-            text-align: center;
-            color: white;
+        .snake-game {
+            width: 400px;
+            height: 400px;
+            border: 4px solid #00ff00;
+            background: #000;
+            position: relative;
         }
         
-        .game-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #4ecdc4;
+        .snake-pixel {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #00ff00;
+            border: 1px solid #008800;
         }
         
-        .click-target {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 50%;
-            margin: 20px auto;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .food-pixel {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff0000;
+            border: 1px solid #aa0000;
             animation: pulse 1s infinite;
         }
         
-        .click-target:hover {
-            transform: scale(1.1);
-        }
-        
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(78,205,196,0.7); }
-            70% { box-shadow: 0 0 0 30px rgba(78,205,196,0); }
-            100% { box-shadow: 0 0 0 0 rgba(78,205,196,0); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
         
-        .score {
-            font-size: 2rem;
-            margin: 20px 0;
-            color: #96ceb4;
+        .game-info {
+            color: #00ff00;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
         }
         
         .close-game {
-            padding: 10px 20px;
-            background: #ff6b6b;
-            border: none;
-            border-radius: 25px;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
             margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff0000;
+            border: 2px solid #aa0000;
+            color: #fff;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            cursor: pointer;
         }
         
-        /* الكواكب المتحركة */
-        .planet {
+        /* تأثيرات الرعب */
+        .creepy-eyes {
             position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff0000;
             border-radius: 50%;
-            animation: orbit 20s linear infinite;
+            animation: creepyGlow 3s infinite;
+            opacity: 0;
         }
         
-        .planet-1 {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            top: 20%;
-            left: 10%;
-            animation-duration: 25s;
+        @keyframes creepyGlow {
+            0%, 90% { opacity: 0; }
+            91%, 95% { opacity: 1; box-shadow: 0 0 20px #ff0000; }
+            96%, 100% { opacity: 0; }
         }
         
-        .planet-2 {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            top: 70%;
-            right: 15%;
-            animation-duration: 30s;
-            animation-direction: reverse;
+        /* الضوضاء الرقمية */
+        .digital-noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                );
+            z-index: 5;
+            animation: scanlines 0.1s infinite;
+            pointer-events: none;
         }
         
-        .planet-3 {
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(45deg, #96ceb4, #85c6a5);
-            top: 40%;
-            right: 5%;
-            animation-duration: 15s;
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
         }
         
-        @keyframes orbit {
-            0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+        /* Terminal Console */
+        .terminal-console {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid #00ff00;
+            padding: 10px;
+            font-family: 'VT323', monospace;
+            font-size: 14px;
+            color: #00ff00;
+            overflow: hidden;
+            z-index: 15;
         }
         
-        /* استجابة للشاشات الصغيرة */
+        .console-text {
+            animation: typeConsole 8s infinite;
+            white-space: pre-line;
+        }
+        
+        @keyframes typeConsole {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        /* موبايل */
         @media (max-width: 768px) {
-            .error-404 { font-size: 5rem; }
+            .error-404 { font-size: 4rem; }
             .zatili-name { font-size: 2rem; }
-            .message { font-size: 1.2rem; padding: 0 20px; }
-            .buttons { flex-direction: column; align-items: center; }
-            .zatili-character { width: 150px; height: 150px; }
+            .error-message { font-size: 1.2rem; padding: 0 20px; }
+            .pixel-buttons { flex-direction: column; align-items: center; }
+            .zatili-pixel { width: 96px; height: 96px; }
+            .snake-game { width: 300px; height: 300px; }
         }
     </style>
 </head>
 <body>
     <!-- الماوس المخصص -->
-    <div class="custom-cursor"></div>
+    <div class="pixel-cursor"></div>
     
-    <!-- النجوم المتحركة -->
-    <div class="stars"></div>
+    <!-- الخلفية المشوشة -->
+    <div class="glitch-bg"></div>
     
-    <!-- الكواكب -->
-    <div class="planet planet-1"></div>
-    <div class="planet planet-2"></div>
-    <div class="planet planet-3"></div>
+    <!-- الضوضاء الرقمية -->
+    <div class="digital-noise"></div>
+    
+    <!-- العيون المرعبة -->
+    <div class="creepy-eyes" style="top: 10%; left: 5%;"></div>
+    <div class="creepy-eyes" style="top: 20%; right: 8%;"></div>
+    <div class="creepy-eyes" style="bottom: 30%; left: 15%;"></div>
     
     <!-- المحتوى الرئيسي -->
     <div class="container">
-        <div class="zatili-character">
-            <div class="zatili-face">
-                <div class="zatili-hat"></div>
-                <div class="zatili-eyes">
-                    <div class="eye"></div>
-                    <div class="eye"></div>
-                </div>
-                <div class="zatili-mouth"></div>
+        <div class="zatili-pixel">
+            <div class="pixel-face"></div>
+        </div>
+        
+        <div class="terminal-text">
+            <div class="error-404">ERROR 404</div>
+            <div class="zatili-name">ZATILI.EXE</div>
+            <div class="error-message">
+                > SYSTEM FAILURE DETECTED<br>
+                > زطيلي.exe has encountered a fatal error<br>
+                > الصفحة المطلوبة غير موجودة في النظام
             </div>
         </div>
         
-        <div class="main-text">
-            <div class="error-404">404</div>
-            <div class="zatili-name">زطيلي</div>
-            <div class="message">
-                عذراً! يبدو أن زطيلي قد ضاع في الفضاء السيبراني! 🚀<br>
-                الصفحة التي تبحث عنها غير موجودة في هذا الكون الرقمي
-            </div>
-        </div>
-        
-        <div class="buttons">
-            <a href="#" class="btn btn-home" id="homeBtn">العودة للوطن 🏠</a>
-            <button class="btn btn-game" id="gameBtn">ساعد زطيلي! 🎮</button>
+        <div class="pixel-buttons">
+            <a href="#" class="pixel-btn" id="homeBtn">[HOME]</a>
+            <button class="pixel-btn" id="gameBtn">[PLAY SNAKE]</button>
+            <button class="pixel-btn" id="debugBtn">[DEBUG MODE]</button>
         </div>
     </div>
     
-    <!-- منطقة اللعبة -->
-    <div class="game-area" id="gameArea">
-        <div class="game-content">
-            <div class="game-title">ساعد زطيلي في العثور على طريق العودة!</div>
-            <div class="click-target" id="clickTarget"></div>
-            <div class="score">النقاط: <span id="scoreValue">0</span></div>
-            <button class="close-game" id="closeGame">إغلاق اللعبة</button>
+    <!-- لعبة Snake -->
+    <div class="game-overlay" id="gameOverlay">
+        <div>
+            <div class="game-info">
+                <div>ZATILI SNAKE GAME</div>
+                <div>SCORE: <span id="score">0</span></div>
+                <div>استخدم WASD أو الأسهم للتحكم</div>
+            </div>
+            <canvas class="snake-game" id="snakeCanvas" width="400" height="400"></canvas>
+            <div style="text-align: center;">
+                <button class="close-game" id="closeGame">[EXIT GAME]</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Terminal Console -->
+    <div class="terminal-console">
+        <div class="console-text" id="consoleText">
+> Initializing ZATILI system...
+> Loading error_404.exe
+> WARNING: Corrupted data detected
+> زطيلي_system.dll not found
+> Attempting recovery...
+> FAILED - Contact system administrator
         </div>
     </div>
 
     <script>
         // تتبع الماوس المخصص
-        const cursor = document.querySelector('.custom-cursor');
+        const cursor = document.querySelector('.pixel-cursor');
+        let mouseX = 0, mouseY = 0;
+        
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = (Math.floor(mouseX / 8) * 8) + 'px';
+            cursor.style.top = (Math.floor(mouseY / 8) * 8) + 'px';
         });
 
-        // إنشاء النجوم العشوائية
-        function createStars() {
-            const starsContainer = document.querySelector('.stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 1 + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 2 + 's';
-                starsContainer.appendChild(star);
-            }
+        // تأثيرات صوتية محاكة
+        function playPixelSound() {
+            // محاكاة صوت 8-bit
+            console.log('*BEEP*');
         }
 
-        // تأثيرات تفاعلية على العناصر
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2)';
-                cursor.style.background = '#4ecdc4';
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.background = '#ff6b6b';
-            });
-        });
-
-        // شخصية زطيلي تتفاعل مع الماوس
-        const zatiliCharacter = document.querySelector('.zatili-character');
-        document.addEventListener('mousemove', (e) => {
-            const rect = zatiliCharacter.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-            const rotation = angle * (180 / Math.PI);
-            
-            zatiliCharacter.style.transform = `rotate(${rotation * 0.1}deg)`;
-        });
-
-        // اللعبة التفاعلية
-        let score = 0;
-        const gameArea = document.getElementById('gameArea');
-        const gameBtn = document.getElementById('gameBtn');
-        const closeGameBtn = document.getElementById('closeGame');
-        const clickTarget = document.getElementById('clickTarget');
-        const scoreValue = document.getElementById('scoreValue');
-
-        gameBtn.addEventListener('click', () => {
-            gameArea.style.display = 'flex';
-            score = 0;
-            scoreValue.textContent = score;
-            moveTarget();
-        });
-
-        closeGameBtn.addEventListener('click', () => {
-            gameArea.style.display = 'none';
-        });
-
-        clickTarget.addEventListener('click', () => {
-            score += 10;
-            scoreValue.textContent = score;
-            
-            // تأثير بصري عند النقر
-            clickTarget.style.transform = 'scale(1.3)';
-            setTimeout(() => {
-                clickTarget.style.transform = 'scale(1)';
-            }, 200);
-            
-            moveTarget();
-            
-            // تشغيل صوت تفاعلي (محاكاة)
-            if (score % 50 === 0) {
-                showCongrats();
+        // لعبة Snake
+        class SnakeGame {
+            constructor() {
+                this.canvas = document.getElementById('snakeCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.gridSize = 20;
+                this.snake = [{x: 200, y: 200}];
+                this.food = this.generateFood();
+                this.direction = 'right';
+                this.score = 0;
+                this.gameRunning = false;
             }
-        });
-
-        function moveTarget() {
-            const gameContent = document.querySelector('.game-content');
-            const maxX = gameContent.offsetWidth - clickTarget.offsetWidth;
-            const maxY = gameContent.offsetHeight - clickTarget.offsetHeight;
             
-            const newX = Math.random() * (maxX - 100) + 50;
-            const newY = Math.random() * (maxY - 200) + 100;
-            
-            clickTarget.style.transform = `translate(${newX}px, ${newY}px)`;
-        }
-
-        function showCongrats() {
-            const message = document.querySelector('.message');
-            const originalText = message.innerHTML;
-            message.innerHTML = '🎉 رائع! زطيلي يشكرك! 🎉';
-            message.style.color = '#4ecdc4';
-            
-            setTimeout(() => {
-                message.innerHTML = originalText;
-                message.style.color = '#ddd';
-            }, 2000);
-        }
-
-        // تأثيرات الضغط على المسافة
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space') {
-                e.preventDefault();
-                document.body.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    document.body.style.transform = 'scale(1)';
-                }, 100);
-            }
-        });
-
-        // تحريك الكواكب عند النقر عليها
-        document.querySelectorAll('.planet').forEach(planet => {
-            planet.addEventListener('click', () => {
-                planet.style.animationDuration = '2s';
-                setTimeout(() => {
-                    planet.style.animationDuration = '';
-                }, 3000);
-            });
-        });
-
-        // زر العودة للصفحة الرئيسية
-        document.getElementById('homeBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('زطيلي يقول: شكراً لك! سنعود للصفحة الرئيسية قريباً 🚀');
-            // هنا يمكن إضافة رابط حقيقي للصفحة الرئيسية
-            // window.location.href = '/';
-        });
-
-        // تأثير الانفجار عند النقر في أي مكان
-        document.addEventListener('click', (e) => {
-            createExplosion(e.clientX, e.clientY);
-        });
-
-        function createExplosion(x, y) {
-            for (let i = 0; i < 6; i++) {
-                const spark = document.createElement('div');
-                spark.style.position = 'fixed';
-                spark.style.left = x + 'px';
-                spark.style.top = y + 'px';
-                spark.style.width = '4px';
-                spark.style.height = '4px';
-                spark.style.background = '#4ecdc4';
-                spark.style.borderRadius = '50%';
-                spark.style.pointerEvents = 'none';
-                spark.style.zIndex = '9999';
-                
-                document.body.appendChild(spark);
-                
-                const angle = (i / 6) * Math.PI * 2;
-                const velocity = 50 + Math.random() * 50;
-                
-                spark.animate([
-                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-                    { 
-                        transform: `translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px) scale(0)`, 
-                        opacity: 0 
-                    }
-                ], {
-                    duration: 1000,
-                    easing: 'ease-out'
-                }).onfinish = () => {
-                    document.body.removeChild(spark);
+            generateFood() {
+                return {
+                    x: Math.floor(Math.random() * (this.canvas.width / this.gridSize)) * this.gridSize,
+                    y: Math.floor(Math.random() * (this.canvas.height / this.gridSize)) * this.gridSize
                 };
             }
+            
+            draw() {
+                // مسح الشاشة
+                this.ctx.fillStyle = '#000';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // رسم الثعبان
+                this.ctx.fillStyle = '#00ff00';
+                this.snake.forEach((segment, index) => {
+                    if (index === 0) {
+                        this.ctx.fillStyle = '#ffff00'; // رأس الثعبان
+                    } else {
+                        this.ctx.fillStyle = '#00ff00';
+                    }
+                    this.ctx.fillRect(segment.x, segment.y, this.gridSize - 2, this.gridSize - 2);
+                });
+                
+                // رسم الطعام
+                this.ctx.fillStyle = '#ff0000';
+                this.ctx.fillRect(this.food.x, this.food.y, this.gridSize - 2, this.gridSize - 2);
+            }
+            
+            update() {
+                const head = {...this.snake[0]};
+                
+                switch(this.direction) {
+                    case 'up': head.y -= this.gridSize; break;
+                    case 'down': head.y += this.gridSize; break;
+                    case 'left': head.x -= this.gridSize; break;
+                    case 'right': head.x += this.gridSize; break;
+                }
+                
+                // التحقق من الحدود
+                if (head.x < 0 || head.x >= this.canvas.width || 
+                    head.y < 0 || head.y >= this.canvas.height) {
+                    this.gameOver();
+                    return;
+                }
+                
+                // التحقق من الاصطدام بالجسم
+                if (this.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                    this.gameOver();
+                    return;
+                }
+                
+                this.snake.unshift(head);
+                
+                // التحقق من أكل الطعام
+                if (head.x === this.food.x && head.y === this.food.y) {
+                    this.score += 10;
+                    document.getElementById('score').textContent = this.score;
+                    this.food = this.generateFood();
+                    playPixelSound();
+                } else {
+                    this.snake.pop();
+                }
+            }
+            
+            gameOver() {
+                this.gameRunning = false;
+                alert('GAME OVER! زطيلي مات! النقاط: ' + this.score);
+                this.reset();
+            }
+            
+            reset() {
+                this.snake = [{x: 200, y: 200}];
+                this.direction = 'right';
+                this.score = 0;
+                document.getElementById('score').textContent = this.score;
+                this.food = this.generateFood();
+            }
+            
+            start() {
+                if (this.gameRunning) return;
+                this.gameRunning = true;
+                this.gameLoop();
+            }
+            
+            gameLoop() {
+                if (!this.gameRunning) return;
+                this.update();
+                this.draw();
+                setTimeout(() => this.gameLoop(), 150);
+            }
         }
 
-        // تهيئة الصفحة
-        createStars();
-        
-        // رسالة ترحيب
-        setTimeout(() => {
-            console.log('🚀 مرحباً! أنت في موقع زطيلي الرائع!');
-            console.log('💻 جرب النقر على الأزرار واللعب مع العناصر التفاعلية!');
-        }, 1000);
+        const snakeGame = new SnakeGame();
+
+        // التحكم في اللعبة
+        document.addEventListener('keydown', (e) => {
+            if (!snakeGame.gameRunning) return;
+            
+            switch(e.key) {
+                case 'ArrowUp':
+                case 'w':
+                case 'W':
+                    if (snakeGame.direction !== 'down') snakeGame.direction = 'up';
+                    break;
+                case 'ArrowDown':
+                case 's':
+                case 'S':
+                    if (snakeGame.direction !== 'up') snakeGame.direction = 'down';
+                    break;
+                case 'ArrowLeft':
+                case 'a':
+                case 'A':
+                    if (snakeGame.direction !== 'right') snakeGame.direction = 'left';
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                case 'D':
+                    if (snakeGame.direction !== 'left') snakeGame.direction = 'right';
+                    break;
+            }
+            e.preventDefault();
+        });
+
+        // أزرار التحكم
+        document.getElementById('gameBtn').addEventListener('click', () => {
+            document.getElementById('gameOverlay').style.display = 'flex';
+            snakeGame.reset();
+            snakeGame.draw();
+            setTimeout(() => snakeGame.start(), 1000);
+        });
+
+        document.getElementById('closeGame').addEventListener('click', () => {
+            snakeGame.gameRunning = false;
+            document.getElementById('gameOverlay').style.display = 'none';
+        });
+
+        document.getElementById('homeBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('زطيلي يقول: النظام معطل! لا يمكن العودة للصفحة الرئيسية');
+        });
+
+        // Debug Mode
+        document.getElementById('debugBtn').addEventListener('click', () => {
+            const zatiliPixel = document.querySelector('.zatili-pixel');
+            zatiliPixel.style.animation = 'none';
+            zatiliPixel.style.transform = 'rotate(180deg)';
+            
+            setTimeout(() => {
+                zatiliPixel.style.animation = 'pixelFloat 2s ease-in-out infinite';
+                zatiliPixel.style.transform = 'none';
+            }, 2000);
+            
+            alert('DEBUG: زطيلي.exe reloaded successfully!');
+        });
+
+        // تأثيرات الرعب العشوائية
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                const body = document.body;
+                body.style.filter = 'invert(1)';
+                setTimeout(() => {
+                    body.style.filter = 'none';
+                }, 100);
+            }
+        }, 5000);
+
+        // Console messages rotation
+        const consoleMessages = [
+            `> Initializing ZATILI system...
+> Loading error_404.exe
+> WARNING: Corrupted data detected
+> زطيلي_system.dll not found
+> Attempting recovery...
+> FAILED - Contact system administrator`,
+            
+            `> Memory scan complete
+> 666 errors found
+> زطيلي is not responding
+> Kill process? [Y/N]
+> User input timeout
+> Process terminated`,
+            
+            `> Connecting to server...
+> Connection failed
+> زطيلي_404.bat executing...
+> Access denied
+> Ghost in the machine detected
+> System compromised`
+        ];
+
+        let consoleIndex = 0;
+        setInterval(() => {
+            document.getElementById('consoleText').textContent = consoleMessages[consoleIndex];
+            consoleIndex = (consoleIndex + 1) % consoleMessages.length;
+        }, 8000);
+
+        // تأثير Glitch على الاسم
+        setInterval(() => {
+            const name = document.querySelector('.zatili-name');
+            const glitchTexts = ['Z4T1L1', 'زطيلي', 'Z@T!L!', 'ERROR'];
+            const originalText = name.textContent;
+            
+            name.textContent = glitchTexts[Math.floor(Math.random() * glitchTexts.length)];
+            setTimeout(() => {
+                name.textContent = originalText;
+            }, 200);
+        }, 7000);
 
     </script>
 </body>
