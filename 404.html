@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - زطيلي في الفضاء!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            height: 100vh;
+            position: relative;
+            cursor: none;
+        }
+        
+        /* النجوم المتحركة */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* الماوس المخصص */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            box-shadow: 0 0 20px #ff6b6b;
+        }
+        
+        /* الحاوي الرئيسي */
+        .container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        /* شخصية زطيلي */
+        .zatili-character {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .zatili-face {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff9a56, #ffad56);
+            border-radius: 50%;
+            position: relative;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .zatili-eyes {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        
+        .eye {
+            width: 25px;
+            height: 25px;
+            background: #333;
+            border-radius: 50%;
+            position: relative;
+            animation: blink 4s infinite;
+        }
+        
+        .eye::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .zatili-mouth {
+            position: absolute;
+            bottom: 35%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            border: 3px solid #333;
+            border-top: none;
+            border-radius: 0 0 40px 40px;
+            animation: smile 2s ease-in-out infinite alternate;
+        }
+        
+        .zatili-hat {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 40px;
+            background: #4ecdc4;
+            border-radius: 20px;
+            border: 3px solid #fff;
+        }
+        
+        .zatili-hat::before {
+            content: '💻';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+        
+        @keyframes smile {
+            0% { width: 40px; }
+            100% { width: 50px; }
+        }
+        
+        /* النص الرئيسي */
+        .main-text {
+            margin-bottom: 30px;
+        }
+        
+        .error-404 {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+        
+        .zatili-name {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+        
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #ddd;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* الأزرار التفاعلية */
+        .buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-home {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+        
+        .btn-game {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            box-shadow: 0 5px 15px rgba(78,205,196,0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* لعبة بسيطة */
+        .game-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .game-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .game-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+        }
+        
+        .click-target {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            animation: pulse 1s infinite;
+        }
+        
+        .click-target:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(78,205,196,0.7); }
+            70% { box-shadow: 0 0 0 30px rgba(78,205,196,0); }
+            100% { box-shadow: 0 0 0 0 rgba(78,205,196,0); }
+        }
+        
+        .score {
+            font-size: 2rem;
+            margin: 20px 0;
+            color: #96ceb4;
+        }
+        
+        .close-game {
+            padding: 10px 20px;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        /* الكواكب المتحركة */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: orbit 20s linear infinite;
+        }
+        
+        .planet-1 {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            top: 20%;
+            left: 10%;
+            animation-duration: 25s;
+        }
+        
+        .planet-2 {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            top: 70%;
+            right: 15%;
+            animation-duration: 30s;
+            animation-direction: reverse;
+        }
+        
+        .planet-3 {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #96ceb4, #85c6a5);
+            top: 40%;
+            right: 5%;
+            animation-duration: 15s;
+        }
+        
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+        }
+        
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .error-404 { font-size: 5rem; }
+            .zatili-name { font-size: 2rem; }
+            .message { font-size: 1.2rem; padding: 0 20px; }
+            .buttons { flex-direction: column; align-items: center; }
+            .zatili-character { width: 150px; height: 150px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- الماوس المخصص -->
+    <div class="custom-cursor"></div>
+    
+    <!-- النجوم المتحركة -->
+    <div class="stars"></div>
+    
+    <!-- الكواكب -->
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    <div class="planet planet-3"></div>
+    
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <div class="zatili-character">
+            <div class="zatili-face">
+                <div class="zatili-hat"></div>
+                <div class="zatili-eyes">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                </div>
+                <div class="zatili-mouth"></div>
+            </div>
+        </div>
+        
+        <div class="main-text">
+            <div class="error-404">404</div>
+            <div class="zatili-name">زطيلي</div>
+            <div class="message">
+                عذراً! يبدو أن زطيلي قد ضاع في الفضاء السيبراني! 🚀<br>
+                الصفحة التي تبحث عنها غير موجودة في هذا الكون الرقمي
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <a href="#" class="btn btn-home" id="homeBtn">العودة للوطن 🏠</a>
+            <button class="btn btn-game" id="gameBtn">ساعد زطيلي! 🎮</button>
+        </div>
+    </div>
+    
+    <!-- منطقة اللعبة -->
+    <div class="game-area" id="gameArea">
+        <div class="game-content">
+            <div class="game-title">ساعد زطيلي في العثور على طريق العودة!</div>
+            <div class="click-target" id="clickTarget"></div>
+            <div class="score">النقاط: <span id="scoreValue">0</span></div>
+            <button class="close-game" id="closeGame">إغلاق اللعبة</button>
+        </div>
+    </div>
+
+    <script>
+        // تتبع الماوس المخصص
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // إنشاء النجوم العشوائية
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // تأثيرات تفاعلية على العناصر
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+                cursor.style.background = '#4ecdc4';
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.background = '#ff6b6b';
+            });
+        });
+
+        // شخصية زطيلي تتفاعل مع الماوس
+        const zatiliCharacter = document.querySelector('.zatili-character');
+        document.addEventListener('mousemove', (e) => {
+            const rect = zatiliCharacter.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+            const rotation = angle * (180 / Math.PI);
+            
+            zatiliCharacter.style.transform = `rotate(${rotation * 0.1}deg)`;
+        });
+
+        // اللعبة التفاعلية
+        let score = 0;
+        const gameArea = document.getElementById('gameArea');
+        const gameBtn = document.getElementById('gameBtn');
+        const closeGameBtn = document.getElementById('closeGame');
+        const clickTarget = document.getElementById('clickTarget');
+        const scoreValue = document.getElementById('scoreValue');
+
+        gameBtn.addEventListener('click', () => {
+            gameArea.style.display = 'flex';
+            score = 0;
+            scoreValue.textContent = score;
+            moveTarget();
+        });
+
+        closeGameBtn.addEventListener('click', () => {
+            gameArea.style.display = 'none';
+        });
+
+        clickTarget.addEventListener('click', () => {
+            score += 10;
+            scoreValue.textContent = score;
+            
+            // تأثير بصري عند النقر
+            clickTarget.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                clickTarget.style.transform = 'scale(1)';
+            }, 200);
+            
+            moveTarget();
+            
+            // تشغيل صوت تفاعلي (محاكاة)
+            if (score % 50 === 0) {
+                showCongrats();
+            }
+        });
+
+        function moveTarget() {
+            const gameContent = document.querySelector('.game-content');
+            const maxX = gameContent.offsetWidth - clickTarget.offsetWidth;
+            const maxY = gameContent.offsetHeight - clickTarget.offsetHeight;
+            
+            const newX = Math.random() * (maxX - 100) + 50;
+            const newY = Math.random() * (maxY - 200) + 100;
+            
+            clickTarget.style.transform = `translate(${newX}px, ${newY}px)`;
+        }
+
+        function showCongrats() {
+            const message = document.querySelector('.message');
+            const originalText = message.innerHTML;
+            message.innerHTML = '🎉 رائع! زطيلي يشكرك! 🎉';
+            message.style.color = '#4ecdc4';
+            
+            setTimeout(() => {
+                message.innerHTML = originalText;
+                message.style.color = '#ddd';
+            }, 2000);
+        }
+
+        // تأثيرات الضغط على المسافة
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                document.body.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    document.body.style.transform = 'scale(1)';
+                }, 100);
+            }
+        });
+
+        // تحريك الكواكب عند النقر عليها
+        document.querySelectorAll('.planet').forEach(planet => {
+            planet.addEventListener('click', () => {
+                planet.style.animationDuration = '2s';
+                setTimeout(() => {
+                    planet.style.animationDuration = '';
+                }, 3000);
+            });
+        });
+
+        // زر العودة للصفحة الرئيسية
+        document.getElementById('homeBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('زطيلي يقول: شكراً لك! سنعود للصفحة الرئيسية قريباً 🚀');
+            // هنا يمكن إضافة رابط حقيقي للصفحة الرئيسية
+            // window.location.href = '/';
+        });
+
+        // تأثير الانفجار عند النقر في أي مكان
+        document.addEventListener('click', (e) => {
+            createExplosion(e.clientX, e.clientY);
+        });
+
+        function createExplosion(x, y) {
+            for (let i = 0; i < 6; i++) {
+                const spark = document.createElement('div');
+                spark.style.position = 'fixed';
+                spark.style.left = x + 'px';
+                spark.style.top = y + 'px';
+                spark.style.width = '4px';
+                spark.style.height = '4px';
+                spark.style.background = '#4ecdc4';
+                spark.style.borderRadius = '50%';
+                spark.style.pointerEvents = 'none';
+                spark.style.zIndex = '9999';
+                
+                document.body.appendChild(spark);
+                
+                const angle = (i / 6) * Math.PI * 2;
+                const velocity = 50 + Math.random() * 50;
+                
+                spark.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { 
+                        transform: `translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px) scale(0)`, 
+                        opacity: 0 
+                    }
+                ], {
+                    duration: 1000,
+                    easing: 'ease-out'
+                }).onfinish = () => {
+                    document.body.removeChild(spark);
+                };
+            }
+        }
+
+        // تهيئة الصفحة
+        createStars();
+        
+        // رسالة ترحيب
+        setTimeout(() => {
+            console.log('🚀 مرحباً! أنت في موقع زطيلي الرائع!');
+            console.log('💻 جرب النقر على الأزرار واللعب مع العناصر التفاعلية!');
+        }, 1000);
+
+    </script>
+</body>
+</html>
