@@ -1,956 +1,1003 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - زطيلي.exe has stopped working</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Page not found. The requested page could not be located on this server.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#2a2a2a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)">
+    <meta property="og:title" content="404 Not Found">
+    <meta property="og:description" content="The page you're looking for doesn't exist.">
+    <meta property="og:type" content="website">
+    <title>404 Not Found</title>
+
+    <!-- CSS Styles -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-        
+        /* CSS Custom Properties */
+        :root {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --accent-primary: #007acc;
+            --accent-secondary: #ff6b6b;
+            --border-color: #e0e0e0;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            
+            /* Spacing scale */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            
+            /* Typography scale */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+            --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+            --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+            --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+            --text-3xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+        }
+
+        /* Dark mode variables */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1a;
+                --bg-secondary: #2a2a2a;
+                --text-primary: #ffffff;
+                --text-secondary: #cccccc;
+                --border-color: #404040;
+                --shadow-light: rgba(255, 255, 255, 0.1);
+                --gradient-bg: linear-gradient(135deg, #434343 0%, #000000 100%);
+            }
+        }
+
+        /* Manual theme overrides */
+        [data-theme="light"] {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #404040;
+            --shadow-light: rgba(255, 255, 255, 0.1);
+            --gradient-bg: linear-gradient(135deg, #434343 0%, #000000 100%);
+        }
+
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'VT323', monospace;
-            background: #0a0a0a;
-            color: #00ff00;
-            overflow: hidden;
-            height: 100vh;
-            cursor: none;
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
-        }
-        
-        /* الخلفية المتحركة والمشوشة */
-        .glitch-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, transparent 98%, #ff0000 100%),
-                linear-gradient(90deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
-            animation: glitchBg 3s infinite;
-            z-index: 1;
-        }
-        
-        @keyframes glitchBg {
-            0%, 90% { transform: translate(0); }
-            92% { transform: translate(-2px, 2px); }
-            94% { transform: translate(2px, -2px); }
-            96% { transform: translate(-1px, 1px); }
-            98% { transform: translate(1px, -1px); }
-            100% { transform: translate(0); }
-        }
-        
-        /* الماوس المخصص بستايل بيكسل */
-        .pixel-cursor {
-            position: fixed;
-            width: 16px;
-            height: 16px;
-            background: #ff0000;
-            pointer-events: none;
-            z-index: 9999;
-            image-rendering: pixelated;
-            box-shadow: 
-                0 0 0 1px #ffffff,
-                1px 1px 0 1px #aa0000;
-            animation: cursorBlink 1s infinite;
-        }
-        
-        @keyframes cursorBlink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.7; }
-        }
-        
-        /* الحاوي الرئيسي */
-        .container {
-            position: relative;
-            z-index: 10;
-            height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--accent-primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Header */
+        header {
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: var(--space-xs);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--text-sm);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px var(--shadow-light);
+        }
+
+        .theme-toggle:focus {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+
+        /* Main content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
             text-align: center;
-            padding: 20px;
         }
-        
-        /* شخصية زطيلي بستايل بيكسل آرت */
-        .zatili-pixel {
-            width: 128px;
-            height: 128px;
-            margin-bottom: 30px;
-            position: relative;
-            animation: pixelFloat 2s ease-in-out infinite;
-            image-rendering: pixelated;
-        }
-        
-        .pixel-face {
+
+        /* 404 Card - inspired by the reference image */
+        .error-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: var(--space-2xl);
+            box-shadow: 0 10px 30px var(--shadow-light);
+            max-width: 500px;
             width: 100%;
-            height: 100%;
-            background: 
-                /* الوجه */
-                radial-gradient(circle at 50% 50%, #8B4513 30%, transparent 30%),
-                /* العين اليسرى */
-                radial-gradient(circle at 35% 40%, #ff0000 8%, transparent 8%),
-                /* العين اليمنى */
-                radial-gradient(circle at 65% 40%, #ff0000 8%, transparent 8%),
-                /* الفم */
-                linear-gradient(to right, transparent 40%, #000000 40%, #000000 60%, transparent 60%);
-            background-size: 
-                100% 100%,
-                100% 100%,
-                100% 100%,
-                100% 20%;
-            background-position: 
-                center,
-                center,
-                center,
-                center 70%;
-            background-repeat: no-repeat;
             position: relative;
-            border: 2px solid #333;
+            overflow: hidden;
+            margin-bottom: var(--space-xl);
         }
-        
-        .pixel-face::before {
+
+        .error-card::before {
             content: '';
             position: absolute;
-            top: -10px;
-            left: 20px;
-            width: 80px;
-            height: 20px;
-            background: 
-                linear-gradient(90deg, #444 0%, #666 50%, #444 100%),
-                linear-gradient(90deg, transparent 30%, #00ff00 30%, #00ff00 70%, transparent 70%);
-            background-size: 100% 100%, 100% 50%;
-            background-position: center, center;
-            border: 1px solid #333;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-bg);
+            opacity: 0.05;
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
         }
-        
-        @keyframes pixelFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(10px, -10px) rotate(1deg); }
+            66% { transform: translate(-5px, 5px) rotate(-1deg); }
         }
-        
-        /* النص الرئيسي بستايل Terminal */
-        .terminal-text {
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px currentColor;
+
+        /* 404 Text - hand-drawn style like reference */
+        .error-number {
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            margin-bottom: var(--space-lg);
+            color: var(--text-primary);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
         }
-        
-        .error-404 {
-            font-size: 6rem;
-            font-weight: normal;
-            color: #ff0000;
-            margin-bottom: 20px;
-            animation: glitchText 4s infinite;
-            text-shadow: 
-                2px 0 0 #00ffff,
-                -2px 0 0 #ff00ff;
-        }
-        
-        @keyframes glitchText {
-            0%, 90% { 
-                transform: translate(0);
-                text-shadow: 2px 0 0 #00ffff, -2px 0 0 #ff00ff;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            91% { 
-                transform: translate(-2px, 2px);
-                text-shadow: 4px 0 0 #00ffff, -4px 0 0 #ff00ff;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            92% { 
-                transform: translate(2px, -2px);
-                text-shadow: -4px 0 0 #00ffff, 4px 0 0 #ff00ff;
-            }
-            93% { 
-                transform: translate(-1px, 1px);
-                text-shadow: 2px 0 0 #00ffff, -2px 0 0 #ff00ff;
-            }
-            94% { 
-                transform: translate(1px, -1px);
-                text-shadow: -2px 0 0 #00ffff, 2px 0 0 #ff00ff;
-            }
-            95% { transform: translate(0); }
         }
-        
-        .zatili-name {
-            font-size: 3rem;
-            color: #00ff00;
-            margin-bottom: 20px;
-            animation: typewriter 3s steps(6) infinite;
-        }
-        
-        @keyframes typewriter {
-            0%, 50% { width: 0; }
-            100% { width: 100%; }
-        }
-        
-        .error-message {
-            font-size: 1.5rem;
-            color: #ffff00;
-            margin-bottom: 30px;
-            max-width: 600px;
-            line-height: 1.4;
-            animation: flicker 2s infinite;
-        }
-        
-        @keyframes flicker {
-            0%, 95% { opacity: 1; }
-            96%, 99% { opacity: 0.1; }
-            100% { opacity: 1; }
-        }
-        
-        /* أزرار الألعاب القديمة */
-        .pixel-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .pixel-btn {
-            padding: 15px 25px;
-            font-family: 'VT323', monospace;
-            font-size: 1.5rem;
-            border: 3px outset #666;
-            background: #333;
-            color: #00ff00;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.1s ease;
-            image-rendering: pixelated;
-            text-transform: uppercase;
-        }
-        
-        .pixel-btn:hover {
-            background: #444;
-            border: 3px inset #666;
-            color: #ffff00;
-            text-shadow: 0 0 5px currentColor;
-        }
-        
-        .pixel-btn:active {
-            background: #222;
-            border: 3px inset #333;
-            transform: translate(1px, 1px);
-        }
-        
-        /* لعبة Snake بسيطة */
-        .game-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .snake-game {
-            width: 400px;
-            height: 400px;
-            border: 4px solid #00ff00;
-            background: #000;
+
+        /* Wavy lines like in reference */
+        .wavy-lines {
+            margin: var(--space-lg) 0;
+            height: 60px;
             position: relative;
         }
-        
-        .snake-pixel {
+
+        .wavy-line {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #00ff00;
-            border: 1px solid #008800;
+            width: 100%;
+            height: 2px;
+            background: var(--text-secondary);
+            border-radius: 2px;
+            opacity: 0.6;
         }
-        
-        .food-pixel {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff0000;
-            border: 1px solid #aa0000;
-            animation: pulse 1s infinite;
+
+        .wavy-line:nth-child(1) {
+            top: 10px;
+            animation: wave1 3s ease-in-out infinite;
         }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+        .wavy-line:nth-child(2) {
+            top: 25px;
+            animation: wave2 3s ease-in-out infinite 0.5s;
         }
-        
-        .game-info {
-            color: #00ff00;
-            font-family: 'VT323', monospace;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 20px;
+
+        .wavy-line:nth-child(3) {
+            top: 40px;
+            animation: wave3 3s ease-in-out infinite 1s;
         }
-        
-        .close-game {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #ff0000;
-            border: 2px solid #aa0000;
-            color: #fff;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
+
+        @keyframes wave1 {
+            0%, 100% { transform: scaleX(1) translateX(0); }
+            50% { transform: scaleX(0.95) translateX(5px); }
+        }
+
+        @keyframes wave2 {
+            0%, 100% { transform: scaleX(1) translateX(0); }
+            50% { transform: scaleX(1.05) translateX(-3px); }
+        }
+
+        /* Error message in lines area */
+        .error-message-lines {
+            margin-top: var(--space-sm);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            line-height: 1.4;
+        }
+
+        .error-message-lines p {
+            margin: 2px 0;
+            opacity: 0.8;
+        }
+
+        /* Action buttons */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .btn {
+            padding: var(--space-xs) var(--space-md);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: all 0.3s ease;
             cursor: pointer;
         }
-        
-        /* تأثيرات الرعب */
-        .creepy-eyes {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #ff0000;
-            border-radius: 50%;
-            animation: creepyGlow 3s infinite;
-            opacity: 0;
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-light);
+            border-color: var(--accent-primary);
         }
-        
-        @keyframes creepyGlow {
-            0%, 90% { opacity: 0; }
-            91%, 95% { opacity: 1; box-shadow: 0 0 20px #ff0000; }
-            96%, 100% { opacity: 0; }
+
+        .btn:focus {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
         }
-        
-        /* الضوضاء الرقمية */
-        .digital-noise {
-            position: fixed;
-            top: 0;
-            left: 0;
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        .btn-danger {
+            background: var(--accent-secondary);
+            color: white;
+            border-color: var(--accent-secondary);
+        }
+
+        /* Error message */
+        .error-message {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* Redirect counter - positioned at bottom */
+        .redirect-info {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--space-md);
+            margin-top: var(--space-xl);
+            font-size: var(--text-sm);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
             width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255, 255, 255, 0.03) 2px,
-                    rgba(255, 255, 255, 0.03) 4px
-                );
-            z-index: 5;
-            animation: scanlines 0.1s infinite;
-            pointer-events: none;
+            max-width: 500px;
         }
-        
-        @keyframes scanlines {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(4px); }
+
+        .redirect-counter {
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--accent-primary);
+            margin-bottom: var(--space-xs);
         }
-        
-        /* Terminal Console */
-        .terminal-console {
-            position: fixed;
-            bottom: 0;
-            left: 0;
+
+        .redirect-controls {
+            display: flex;
+            gap: var(--space-xs);
+            justify-content: center;
+            margin-top: var(--space-xs);
+        }
+
+        .btn-small {
+            padding: var(--space-xs) var(--space-sm);
+            font-size: var(--text-xs);
+        }
+
+        /* Search box */
+        .search-container {
+            max-width: 400px;
             width: 100%;
-            height: 120px;
-            background: rgba(0, 0, 0, 0.9);
-            border-top: 2px solid #00ff00;
-            padding: 10px;
-            font-family: 'VT323', monospace;
-            font-size: 14px;
-            color: #00ff00;
-            overflow: hidden;
-            z-index: 15;
+            margin-bottom: var(--space-lg);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
-        
-        .console-text {
-            animation: typeConsole 8s infinite;
-            white-space: pre-line;
+
+        .search-box {
+            display: flex;
+            gap: var(--space-xs);
         }
-        
-        @keyframes typeConsole {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { opacity: 0; }
+
+        .search-input {
+            flex: 1;
+            padding: var(--space-sm);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: var(--text-base);
         }
-        
-        /* Responsive Design */
-        
-        /* شاشات كبيرة جداً */
-        @media (min-width: 1200px) {
-            .error-404 { font-size: 8rem; }
-            .zatili-name { font-size: 4rem; }
-            .error-message { font-size: 2rem; }
-            .zatili-pixel { width: 160px; height: 160px; }
-            .snake-game { width: 500px; height: 500px; }
-            .terminal-console { height: 150px; font-size: 16px; }
+
+        .search-input:focus {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: -2px;
+            border-color: var(--accent-primary);
         }
-        
-        /* التابلت العادي */
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .error-404 { font-size: 5rem; }
-            .zatili-name { font-size: 2.5rem; }
-            .error-message { font-size: 1.3rem; }
-            .pixel-btn { font-size: 1.3rem; padding: 12px 20px; }
-            .zatili-pixel { width: 112px; height: 112px; }
-            .snake-game { width: 350px; height: 350px; }
+
+        /* Footer */
+        footer {
+            padding: var(--space-md);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
         }
-        
-        /* التابلت الصغير والموبايل الكبير */
-        @media (max-width: 768px) and (min-width: 481px) {
-            .error-404 { font-size: 4rem; }
-            .zatili-name { font-size: 2rem; }
-            .error-message { 
-                font-size: 1.2rem; 
-                padding: 0 30px;
-                margin-bottom: 25px;
-            }
-            .pixel-buttons { 
-                flex-direction: column; 
-                align-items: center;
-                gap: 15px;
-            }
-            .pixel-btn {
-                width: 200px;
-                padding: 12px 15px;
-                font-size: 1.2rem;
-            }
-            .zatili-pixel { width: 96px; height: 96px; }
-            .snake-game { width: 320px; height: 320px; }
-            .terminal-console { 
-                height: 100px; 
-                font-size: 12px;
-                padding: 8px;
-            }
-            .container { padding: 15px; }
+
+        .developer-credit {
+            margin-top: var(--space-xs);
         }
-        
-        /* الموبايل العادي */
-        @media (max-width: 480px) and (min-width: 321px) {
-            .error-404 { 
-                font-size: 3rem; 
-                margin-bottom: 15px;
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
-            .zatili-name { 
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-            }
-            .error-message { 
-                font-size: 1rem; 
-                padding: 0 20px;
-                margin-bottom: 20px;
-                line-height: 1.3;
-            }
-            .pixel-buttons { 
-                flex-direction: column; 
-                align-items: center;
-                gap: 12px;
-            }
-            .pixel-btn {
-                width: 180px;
-                padding: 10px 12px;
-                font-size: 1.1rem;
-            }
-            .zatili-pixel { 
-                width: 80px; 
-                height: 80px;
-                margin-bottom: 20px;
-            }
-            .snake-game { width: 280px; height: 280px; }
-            .terminal-console { 
-                height: 80px; 
-                font-size: 10px;
-                padding: 5px;
-            }
-            .container { padding: 10px; }
-            .game-info { font-size: 1.2rem; }
-            .close-game { font-size: 1rem; padding: 8px 15px; }
-        }
-        
-        /* الموبايل الصغير جداً */
-        @media (max-width: 320px) {
-            .error-404 { 
-                font-size: 2.5rem; 
-                margin-bottom: 10px;
-            }
-            .zatili-name { 
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-            }
-            .error-message { 
-                font-size: 0.9rem; 
-                padding: 0 15px;
-                margin-bottom: 15px;
-                line-height: 1.2;
-            }
-            .pixel-buttons { 
-                flex-direction: column; 
-                align-items: center;
-                gap: 10px;
-            }
-            .pixel-btn {
-                width: 160px;
-                padding: 8px 10px;
-                font-size: 1rem;
-            }
-            .zatili-pixel { 
-                width: 64px; 
-                height: 64px;
-                margin-bottom: 15px;
-            }
-            .snake-game { width: 240px; height: 240px; }
-            .terminal-console { 
-                height: 60px; 
-                font-size: 8px;
-                padding: 3px;
-            }
-            .container { padding: 8px; }
-            .game-info { font-size: 1rem; }
-            .close-game { font-size: 0.9rem; padding: 6px 12px; }
-            .pixel-cursor { width: 12px; height: 12px; }
-        }
-        
-        /* الاتجاه الأفقي للموبايل والتابلت */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .container {
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-                gap: 20px;
-            }
-            .zatili-pixel { 
-                width: 80px; 
-                height: 80px;
-                margin-bottom: 0;
-            }
-            .terminal-text {
-                margin-bottom: 20px;
-                flex: 1;
-                max-width: 400px;
-            }
-            .error-404 { font-size: 3rem; margin-bottom: 10px; }
-            .zatili-name { font-size: 1.5rem; margin-bottom: 10px; }
-            .error-message { font-size: 1rem; margin-bottom: 15px; }
-            .terminal-console { height: 50px; font-size: 8px; }
-            .pixel-buttons { gap: 10px; }
-            .pixel-btn { padding: 8px 15px; font-size: 1rem; }
-        }
-        
-        /* Touch-friendly للأجهزة اللمسية */
-        @media (hover: none) and (pointer: coarse) {
-            .pixel-btn {
-                min-height: 44px;
-                min-width: 44px;
-                touch-action: manipulation;
-            }
-            .close-game {
-                min-height: 44px;
-                min-width: 44px;
-                touch-action: manipulation;
-            }
-            .pixel-cursor { display: none; }
-        }
-        
-        /* الشاشات عالية الدقة */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .pixel-face,
-            .snake-pixel,
-            .food-pixel {
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: pixelated;
+            
+            .error-card::before {
+                animation: none;
             }
         }
-        
-        /* تحسينات الأداء للشاشات الصغيرة */
-        @media (max-width: 768px) {
-            .glitch-bg {
-                animation-duration: 4s;
+
+        /* Responsive design */
+        @media (max-width: 640px) {
+            .error-card {
+                padding: var(--space-lg);
+                margin: 0 var(--space-sm) var(--space-lg);
             }
-            .creepy-eyes {
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+            
+            .redirect-info {
+                margin: var(--space-lg) var(--space-sm) 0;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .theme-toggle,
+            .redirect-info,
+            .search-container,
+            .action-buttons .btn:not(.btn-primary) {
                 display: none;
             }
-            .digital-noise {
-                opacity: 0.5;
+            
+            .error-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
             }
+            
+            main::after {
+                content: "Please visit https://chril.xyz to return to the homepage.";
+                display: block;
+                margin-top: 2rem;
+                font-size: 14px;
+                color: #666;
+            }
+        }
+
+        /* Focus styles for keyboard navigation */
+        :focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+
+        /* Hidden text for screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
+
 <body>
-    <!-- الماوس المخصص -->
-    <div class="pixel-cursor"></div>
-    
-    <!-- الخلفية المشوشة -->
-    <div class="glitch-bg"></div>
-    
-    <!-- الضوضاء الرقمية -->
-    <div class="digital-noise"></div>
-    
-    <!-- العيون المرعبة -->
-    <div class="creepy-eyes" style="top: 10%; left: 5%;"></div>
-    <div class="creepy-eyes" style="top: 20%; right: 8%;"></div>
-    <div class="creepy-eyes" style="bottom: 30%; left: 15%;"></div>
-    
-    <!-- المحتوى الرئيسي -->
-    <div class="container">
-        <div class="zatili-pixel">
-            <div class="pixel-face"></div>
-        </div>
-        
-        <div class="terminal-text">
-            <div class="error-404">ERROR 404</div>
-            <div class="zatili-name">ZATILI.EXE</div>
-            <div class="error-message">
-                > SYSTEM FAILURE DETECTED<br>
-                > زطيلي.exe has encountered a fatal error<br>
-                > الصفحة المطلوبة غير موجودة في النظام
+    <!-- Skip link for accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header>
+        <div></div>
+        <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+            <span id="theme-icon">🌙</span>
+        </button>
+    </header>
+
+    <!-- Main content -->
+    <main id="main">
+        <div class="error-card">
+            <!-- Hand-drawn 404 like in reference -->
+            <div class="error-number">404</div>
+            
+            <!-- Error message -->
+            <div class="error-message-card">
+                <h2>الصفحة غير موجودة</h2>
+                <p>عذراً، الصفحة التي تبحث عنها غير متوفرة</p>
+                <p>Sorry, the page you're looking for doesn't exist</p>
+            </div>
+
+            <!-- Action buttons inspired by reference image buttons -->
+            <div class="action-buttons">
+                <a href="https://chril.xyz" class="btn btn-primary" rel="noopener" target="_self">
+                    🏠 Home
+                </a>
+                <button class="btn" id="snake-btn">
+                    🐍 Snake
+                </button>
+                <a href="https://instagram.com/chril.exe" class="btn" target="_blank" rel="noopener">
+                    📱 Social
+                </a>
             </div>
         </div>
-        
-        <div class="pixel-buttons">
-            <a href="#" class="pixel-btn" id="homeBtn">[HOME]</a>
-            <button class="pixel-btn" id="gameBtn">[PLAY SNAKE]</button>
-            <button class="pixel-btn" id="debugBtn">[DEBUG MODE]</button>
+
+        <!-- Redirect information - MOVED TO BOTTOM -->
+        <div class="redirect-info" aria-live="polite">
+            <div class="redirect-counter" id="redirect-counter">
+                Redirecting to home in <span id="countdown">10</span> seconds
+            </div>
+            <div class="redirect-controls">
+                <button class="btn btn-small" id="cancel-redirect">Cancel</button>
+                <button class="btn btn-primary btn-small" id="resume-redirect" style="display: none;">Resume</button>
+            </div>
         </div>
-    </div>
-    
-    <!-- لعبة Snake -->
-    <div class="game-overlay" id="gameOverlay">
+
+        <!-- Snake Game Modal -->
+        <div id="snake-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+            <div style="background: var(--bg-secondary); border-radius: 15px; padding: var(--space-lg); max-width: 500px; width: 90%; text-align: center;">
+                <h2 style="margin-bottom: var(--space-md);">🐍 Snake Game</h2>
+                <canvas id="snake-canvas" width="300" height="300" style="border: 2px solid var(--border-color); border-radius: 8px; background: var(--bg-primary);"></canvas>
+                <div style="margin-top: var(--space-md);">
+                    <p>Score: <span id="snake-score">0</span></p>
+                    <p style="font-size: var(--text-xs); margin: var(--space-xs) 0;">Use arrow keys to play</p>
+                    <div style="display: flex; gap: var(--space-sm); justify-content: center; margin-top: var(--space-md);">
+                        <button class="btn btn-primary" id="restart-snake">Restart</button>
+                        <button class="btn" id="close-snake">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
         <div>
-            <div class="game-info">
-                <div>ZATILI SNAKE GAME</div>
-                <div>SCORE: <span id="score">0</span></div>
-                <div>استخدم WASD أو الأسهم للتحكم</div>
-            </div>
-            <canvas class="snake-game" id="snakeCanvas" width="400" height="400"></canvas>
-            <div style="text-align: center;">
-                <button class="close-game" id="closeGame">[EXIT GAME]</button>
-            </div>
+            <a href="https://chril.xyz" rel="noopener" target="_self">Return to chril.xyz</a>
         </div>
-    </div>
-    
-    <!-- Terminal Console -->
-    <div class="terminal-console">
-        <div class="console-text" id="consoleText">
-> Initializing ZATILI system...
-> Loading error_404.exe
-> WARNING: Corrupted data detected
-> زطيلي_system.dll not found
-> Attempting recovery...
-> FAILED - Contact system administrator
+        <div class="developer-credit">
+            <small>Made by <span rel="author">chril_exe</span></small>
         </div>
-    </div>
+    </footer>
 
+    <!-- JavaScript -->
     <script>
-        // تتبع الماوس المخصص (فقط للأجهزة غير اللمسية)
-        const cursor = document.querySelector('.pixel-cursor');
-        let mouseX = 0, mouseY = 0;
+        // Constants
+        const HOME_URL = 'https://chril.xyz';
         
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        // State management
+        let redirectTimer = null;
+        let redirectTimeLeft = 10;
+        let redirectActive = true;
         
-        if (!isTouchDevice) {
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                cursor.style.left = (Math.floor(mouseX / 8) * 8) + 'px';
-                cursor.style.top = (Math.floor(mouseY / 8) * 8) + 'px';
-            });
-        } else {
-            // إخفاء الماوس المخصص على الأجهزة اللمسية
-            cursor.style.display = 'none';
+        // DOM elements
+        const elements = {
+            themeToggle: document.getElementById('theme-icon'),
+            countdown: document.getElementById('countdown'),
+            cancelBtn: document.getElementById('cancel-redirect'),
+            resumeBtn: document.getElementById('resume-redirect'),
+            snakeBtn: document.getElementById('snake-btn'),
+            snakeModal: document.getElementById('snake-modal'),
+            snakeCanvas: document.getElementById('snake-canvas'),
+            snakeScore: document.getElementById('snake-score'),
+            restartSnake: document.getElementById('restart-snake'),
+            closeSnake: document.getElementById('close-snake')
+        };
+
+        // Theme management
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const currentTheme = savedTheme || systemTheme;
+            
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon(currentTheme);
         }
 
-        // تأثيرات صوتية محاكة
-        function playPixelSound() {
-            // محاكاة صوت 8-bit
-            console.log('*BEEP*');
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            updateThemeIcon(newTheme);
+            
+            try {
+                localStorage.setItem('theme', newTheme);
+            } catch (e) {
+                console.log('Unable to save theme preference');
+            }
         }
 
-        // لعبة Snake
-        class SnakeGame {
-            constructor() {
-                this.canvas = document.getElementById('snakeCanvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.gridSize = 20;
-                this.snake = [{x: 200, y: 200}];
-                this.food = this.generateFood();
-                this.direction = 'right';
-                this.score = 0;
-                this.gameRunning = false;
+        function updateThemeIcon(theme) {
+            if (elements.themeToggle) {
+                elements.themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+        }
+
+        // Redirect functionality
+        function startRedirectTimer() {
+            if (!redirectActive) return;
+            
+            redirectTimer = setInterval(() => {
+                redirectTimeLeft--;
+                
+                if (elements.countdown) {
+                    elements.countdown.textContent = redirectTimeLeft;
+                }
+                
+                if (redirectTimeLeft <= 0) {
+                    clearInterval(redirectTimer);
+                    // Error telemetry hook - would send data if enabled
+                    // logErrorTelemetry();
+                    window.location.href = HOME_URL;
+                }
+            }, 1000);
+        }
+
+        function cancelRedirect() {
+            redirectActive = false;
+            clearInterval(redirectTimer);
+            
+            if (elements.cancelBtn) elements.cancelBtn.style.display = 'none';
+            if (elements.resumeBtn) elements.resumeBtn.style.display = 'inline-block';
+            
+            const counter = document.getElementById('redirect-counter');
+            if (counter) {
+                counter.innerHTML = 'Redirect cancelled';
+            }
+        }
+
+        function resumeRedirect() {
+            redirectActive = true;
+            redirectTimeLeft = 10;
+            
+            if (elements.cancelBtn) elements.cancelBtn.style.display = 'inline-block';
+            if (elements.resumeBtn) elements.resumeBtn.style.display = 'none';
+            
+            const counter = document.getElementById('redirect-counter');
+            if (counter) {
+                counter.innerHTML = 'Redirecting in <span id="countdown">10</span>s';
+                elements.countdown = document.getElementById('countdown');
             }
             
-            generateFood() {
-                return {
-                    x: Math.floor(Math.random() * (this.canvas.width / this.gridSize)) * this.gridSize,
-                    y: Math.floor(Math.random() * (this.canvas.height / this.gridSize)) * this.gridSize
+            startRedirectTimer();
+        }
+
+        // Search functionality
+        function handleSearch(event) {
+            event.preventDefault();
+            
+            const query = elements.searchInput?.value?.trim();
+            if (!query) return;
+            
+            // Sanitize input - remove potentially harmful characters
+            const sanitizedQuery = query.replace(/[<>\"'&]/g, '');
+            
+            if (sanitizedQuery) {
+                const searchUrl = `${HOME_URL}/?s=${encodeURIComponent(sanitizedQuery)}`;
+                window.location.href = searchUrl;
+            }
+        }
+
+        // Error telemetry (stub for future implementation)
+        function logErrorTelemetry() {
+            // This would send error data to an endpoint if enabled
+            const telemetryData = {
+                url: window.location.href,
+                referrer: document.referrer,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+            
+            // console.log('Error telemetry data:', telemetryData);
+            // In a real implementation, this would POST to an analytics endpoint
+        }
+
+        // Snake Game - Fixed version
+        let snake = [];
+        let direction = {x: 0, y: 0};
+        let food = {};
+        let score = 0;
+        let gameRunning = false;
+        let gameInterval = null;
+        let ctx = null;
+
+        function initSnakeGame() {
+            const canvas = elements.snakeCanvas;
+            if (!canvas) return;
+            
+            ctx = canvas.getContext('2d');
+            
+            // Reset game state
+            snake = [
+                {x: 160, y: 160},
+                {x: 140, y: 160},
+                {x: 120, y: 160}
+            ];
+            direction = {x: 20, y: 0}; // Start moving right
+            score = 0;
+            gameRunning = true;
+            
+            generateFood();
+            updateScore();
+            
+            // Clear any existing interval
+            if (gameInterval) clearInterval(gameInterval);
+            
+            // Start game loop
+            gameInterval = setInterval(gameLoop, 200);
+        }
+
+        function generateFood() {
+            let newFood;
+            do {
+                newFood = {
+                    x: Math.floor(Math.random() * 15) * 20,
+                    y: Math.floor(Math.random() * 15) * 20
                 };
+            } while (snake.some(segment => segment.x === newFood.x && segment.y === newFood.y));
+            
+            food = newFood;
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+            
+            moveSnake();
+            if (checkCollisions()) {
+                gameOver();
+                return;
+            }
+            checkFood();
+            draw();
+        }
+
+        function moveSnake() {
+            const head = {
+                x: snake[0].x + direction.x,
+                y: snake[0].y + direction.y
+            };
+            snake.unshift(head);
+        }
+
+        function checkCollisions() {
+            const head = snake[0];
+            
+            // Check wall collision
+            if (head.x < 0 || head.x >= 300 || head.y < 0 || head.y >= 300) {
+                return true;
             }
             
-            draw() {
-                // مسح الشاشة
-                this.ctx.fillStyle = '#000';
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-                
-                // رسم الثعبان
-                this.ctx.fillStyle = '#00ff00';
-                this.snake.forEach((segment, index) => {
-                    if (index === 0) {
-                        this.ctx.fillStyle = '#ffff00'; // رأس الثعبان
-                    } else {
-                        this.ctx.fillStyle = '#00ff00';
-                    }
-                    this.ctx.fillRect(segment.x, segment.y, this.gridSize - 2, this.gridSize - 2);
-                });
-                
-                // رسم الطعام
-                this.ctx.fillStyle = '#ff0000';
-                this.ctx.fillRect(this.food.x, this.food.y, this.gridSize - 2, this.gridSize - 2);
-            }
-            
-            update() {
-                const head = {...this.snake[0]};
-                
-                switch(this.direction) {
-                    case 'up': head.y -= this.gridSize; break;
-                    case 'down': head.y += this.gridSize; break;
-                    case 'left': head.x -= this.gridSize; break;
-                    case 'right': head.x += this.gridSize; break;
-                }
-                
-                // التحقق من الحدود
-                if (head.x < 0 || head.x >= this.canvas.width || 
-                    head.y < 0 || head.y >= this.canvas.height) {
-                    this.gameOver();
-                    return;
-                }
-                
-                // التحقق من الاصطدام بالجسم
-                if (this.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
-                    this.gameOver();
-                    return;
-                }
-                
-                this.snake.unshift(head);
-                
-                // التحقق من أكل الطعام
-                if (head.x === this.food.x && head.y === this.food.y) {
-                    this.score += 10;
-                    document.getElementById('score').textContent = this.score;
-                    this.food = this.generateFood();
-                    playPixelSound();
-                } else {
-                    this.snake.pop();
+            // Check self collision
+            for (let i = 1; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    return true;
                 }
             }
             
-            gameOver() {
-                this.gameRunning = false;
-                alert('GAME OVER! زطيلي مات! النقاط: ' + this.score);
-                this.reset();
-            }
+            return false;
+        }
+
+        function checkFood() {
+            const head = snake[0];
             
-            reset() {
-                this.snake = [{x: 200, y: 200}];
-                this.direction = 'right';
-                this.score = 0;
-                document.getElementById('score').textContent = this.score;
-                this.food = this.generateFood();
-            }
-            
-            start() {
-                if (this.gameRunning) return;
-                this.gameRunning = true;
-                this.gameLoop();
-            }
-            
-            gameLoop() {
-                if (!this.gameRunning) return;
-                this.update();
-                this.draw();
-                setTimeout(() => this.gameLoop(), 150);
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                updateScore();
+                generateFood();
+            } else {
+                snake.pop(); // Remove tail if no food eaten
             }
         }
 
-        const snakeGame = new SnakeGame();
-
-        // التحكم في اللعبة - لوحة المفاتيح
-        document.addEventListener('keydown', (e) => {
-            if (!snakeGame.gameRunning) return;
+        function draw() {
+            if (!ctx) return;
             
-            switch(e.key) {
+            // Clear canvas
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-primary').trim();
+            ctx.fillRect(0, 0, 300, 300);
+            
+            // Draw snake
+            ctx.fillStyle = '#4CAF50'; // Green color for snake
+            snake.forEach(segment => {
+                ctx.fillRect(segment.x + 1, segment.y + 1, 18, 18);
+            });
+            
+            // Draw snake head differently
+            ctx.fillStyle = '#2E7D32'; // Darker green for head
+            ctx.fillRect(snake[0].x + 1, snake[0].y + 1, 18, 18);
+            
+            // Draw food
+            ctx.fillStyle = '#F44336'; // Red color for food
+            ctx.fillRect(food.x + 1, food.y + 1, 18, 18);
+            
+            // Draw grid lines (optional)
+            ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border-color').trim();
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= 300; i += 20) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, 300);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+                ctx.lineTo(300, i);
+                ctx.stroke();
+            }
+        }
+
+        function updateScore() {
+            if (elements.snakeScore) {
+                elements.snakeScore.textContent = score;
+            }
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            if (gameInterval) {
+                clearInterval(gameInterval);
+                gameInterval = null;
+            }
+            
+            // Draw game over message
+            if (ctx) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.fillRect(0, 0, 300, 300);
+                
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 24px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('Game Over!', 150, 140);
+                
+                ctx.font = '16px Arial';
+                ctx.fillText(`Final Score: ${score}`, 150, 170);
+                ctx.fillText('Click Restart to play again', 150, 190);
+            }
+        }
+
+        function handleSnakeKeys(event) {
+            if (!gameRunning) return;
+            
+            const key = event.key;
+            
+            // Prevent snake from going backwards into itself
+            switch(key) {
                 case 'ArrowUp':
-                case 'w':
-                case 'W':
-                    if (snakeGame.direction !== 'down') snakeGame.direction = 'up';
+                    if (direction.y !== 20) { // Not moving down
+                        direction = {x: 0, y: -20};
+                        event.preventDefault();
+                    }
                     break;
                 case 'ArrowDown':
-                case 's':
-                case 'S':
-                    if (snakeGame.direction !== 'up') snakeGame.direction = 'down';
+                    if (direction.y !== -20) { // Not moving up
+                        direction = {x: 0, y: 20};
+                        event.preventDefault();
+                    }
                     break;
                 case 'ArrowLeft':
-                case 'a':
-                case 'A':
-                    if (snakeGame.direction !== 'right') snakeGame.direction = 'left';
+                    if (direction.x !== 20) { // Not moving right
+                        direction = {x: -20, y: 0};
+                        event.preventDefault();
+                    }
                     break;
                 case 'ArrowRight':
-                case 'd':
-                case 'D':
-                    if (snakeGame.direction !== 'left') snakeGame.direction = 'right';
+                    if (direction.x !== -20) { // Not moving left
+                        direction = {x: 20, y: 0};
+                        event.preventDefault();
+                    }
+                    break;
+                case 'Escape':
+                    closeSnakeGame();
+                    event.preventDefault();
                     break;
             }
-            e.preventDefault();
-        });
+        }
 
-        // التحكم باللمس للأجهزة المحمولة
-        let touchStartX, touchStartY;
-        
-        document.addEventListener('touchstart', (e) => {
-            if (!snakeGame.gameRunning) return;
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-        }, { passive: false });
-
-        document.addEventListener('touchend', (e) => {
-            if (!snakeGame.gameRunning || !touchStartX || !touchStartY) return;
-            
-            const touchEndX = e.changedTouches[0].clientX;
-            const touchEndY = e.changedTouches[0].clientY;
-            
-            const deltaX = touchEndX - touchStartX;
-            const deltaY = touchEndY - touchStartY;
-            
-            const minSwipeDistance = 30;
-            
-            if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                // حركة أفقية
-                if (Math.abs(deltaX) > minSwipeDistance) {
-                    if (deltaX > 0 && snakeGame.direction !== 'left') {
-                        snakeGame.direction = 'right';
-                    } else if (deltaX < 0 && snakeGame.direction !== 'right') {
-                        snakeGame.direction = 'left';
-                    }
-                }
-            } else {
-                // حركة عمودية
-                if (Math.abs(deltaY) > minSwipeDistance) {
-                    if (deltaY > 0 && snakeGame.direction !== 'up') {
-                        snakeGame.direction = 'down';
-                    } else if (deltaY < 0 && snakeGame.direction !== 'down') {
-                        snakeGame.direction = 'up';
-                    }
-                }
-            }
-            
-            touchStartX = null;
-            touchStartY = null;
-            e.preventDefault();
-        }, { passive: false });
-
-        // أزرار التحكم
-        document.getElementById('gameBtn').addEventListener('click', () => {
-            document.getElementById('gameOverlay').style.display = 'flex';
-            snakeGame.reset();
-            snakeGame.draw();
-            
-            // إضافة تعليمات للأجهزة المختلفة
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const gameInfo = document.querySelector('.game-info');
-            
-            if (isMobile) {
-                gameInfo.innerHTML = `
-                    <div>ZATILI SNAKE GAME</div>
-                    <div>SCORE: <span id="score">0</span></div>
-                    <div>اسحب بإصبعك للتحكم في الاتجاه</div>
-                `;
-            } else {
-                gameInfo.innerHTML = `
-                    <div>ZATILI SNAKE GAME</div>
-                    <div>SCORE: <span id="score">0</span></div>
-                    <div>استخدم WASD أو الأسهم للتحكم</div>
-                `;
-            }
-            
-            setTimeout(() => snakeGame.start(), 1000);
-        });
-
-        document.getElementById('closeGame').addEventListener('click', () => {
-            snakeGame.gameRunning = false;
-            document.getElementById('gameOverlay').style.display = 'none';
-        });
-
-        document.getElementById('homeBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('زطيلي يقول: النظام معطل! لا يمكن العودة للصفحة الرئيسية');
-        });
-
-        // Debug Mode
-        document.getElementById('debugBtn').addEventListener('click', () => {
-            const zatiliPixel = document.querySelector('.zatili-pixel');
-            zatiliPixel.style.animation = 'none';
-            zatiliPixel.style.transform = 'rotate(180deg)';
-            
-            setTimeout(() => {
-                zatiliPixel.style.animation = 'pixelFloat 2s ease-in-out infinite';
-                zatiliPixel.style.transform = 'none';
-            }, 2000);
-            
-            alert('DEBUG: زطيلي.exe reloaded successfully!');
-        });
-
-        // تأثيرات الرعب العشوائية
-        setInterval(() => {
-            if (Math.random() < 0.1) {
-                const body = document.body;
-                body.style.filter = 'invert(1)';
+        function openSnakeGame() {
+            if (elements.snakeModal) {
+                elements.snakeModal.style.display = 'flex';
                 setTimeout(() => {
-                    body.style.filter = 'none';
+                    initSnakeGame();
+                    document.addEventListener('keydown', handleSnakeKeys);
                 }, 100);
             }
-        }, 5000);
+        }
 
-        // Console messages rotation
-        const consoleMessages = [
-            `> Initializing ZATILI system...
-> Loading error_404.exe
-> WARNING: Corrupted data detected
-> زطيلي_system.dll not found
-> Attempting recovery...
-> FAILED - Contact system administrator`,
-            
-            `> Memory scan complete
-> 666 errors found
-> زطيلي is not responding
-> Kill process? [Y/N]
-> User input timeout
-> Process terminated`,
-            
-            `> Connecting to server...
-> Connection failed
-> زطيلي_404.bat executing...
-> Access denied
-> Ghost in the machine detected
-> System compromised`
-        ];
+        function closeSnakeGame() {
+            if (elements.snakeModal) {
+                elements.snakeModal.style.display = 'none';
+                gameRunning = false;
+                if (gameInterval) {
+                    clearInterval(gameInterval);
+                    gameInterval = null;
+                }
+                document.removeEventListener('keydown', handleSnakeKeys);
+            }
+        }
 
-        let consoleIndex = 0;
-        setInterval(() => {
-            document.getElementById('consoleText').textContent = consoleMessages[consoleIndex];
-            consoleIndex = (consoleIndex + 1) % consoleMessages.length;
-        }, 8000);
+        // Page visibility handling for performance
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                // Pause timers when tab is hidden
+                if (redirectTimer && redirectActive) {
+                    clearInterval(redirectTimer);
+                }
+            } else {
+                // Resume timers when tab is visible
+                if (redirectActive && redirectTimeLeft > 0) {
+                    startRedirectTimer();
+                }
+            }
+        }
 
-        // تأثير Glitch على الاسم
-        setInterval(() => {
-            const name = document.querySelector('.zatili-name');
-            const glitchTexts = ['Z4T1L1', 'زطيلي', 'Z@T!L!', 'ERROR'];
-            const originalText = name.textContent;
+        // Event listeners
+        function initEventListeners() {
+            // Theme toggle
+            if (elements.themeToggle?.parentElement) {
+                elements.themeToggle.parentElement.addEventListener('click', toggleTheme);
+            }
             
-            name.textContent = glitchTexts[Math.floor(Math.random() * glitchTexts.length)];
+            // Redirect controls
+            if (elements.cancelBtn) {
+                elements.cancelBtn.addEventListener('click', cancelRedirect);
+            }
+            if (elements.resumeBtn) {
+                elements.resumeBtn.addEventListener('click', resumeRedirect);
+            }
+            
+            // Search (keeping function but no longer needed)
+            if (elements.searchForm) {
+                elements.searchForm.addEventListener('submit', handleSearch);
+            }
+            
+            // Snake game controls
+            if (elements.snakeBtn) {
+                elements.snakeBtn.addEventListener('click', openSnakeGame);
+            }
+            if (elements.closeSnake) {
+                elements.closeSnake.addEventListener('click', closeSnakeGame);
+            }
+            if (elements.restartSnake) {
+                elements.restartSnake.addEventListener('click', () => {
+                    if (gameInterval) clearInterval(gameInterval);
+                    initSnakeGame();
+                });
+            }
+            
+            // Page visibility for performance
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+            
+            // System theme changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateThemeIcon(newTheme);
+                }
+            });
+        }
+
+        // Initialization
+        function init() {
+            initTheme();
+            initEventListeners();
+            
+            // Start redirect timer if JavaScript is enabled
             setTimeout(() => {
-                name.textContent = originalText;
-            }, 200);
-        }, 7000);
+                if (redirectActive) {
+                    startRedirectTimer();
+                }
+            }, 1000); // Give page a moment to load
+            
+            // Log page load for telemetry (disabled by default)
+            // logErrorTelemetry();
+        }
 
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (redirectTimer) {
+                clearInterval(redirectTimer);
+            }
+        });
     </script>
 </body>
 </html>
