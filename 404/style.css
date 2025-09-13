@@ -1,0 +1,13 @@
+body {
+  background: #000000;
+}
+
+@font-face {
+    font-family: pix_font;
+    src: url(8bit_font.ttf) format('truetype');
+}
+
+h1 {
+    font-family: pix_font, monospace;
+    color: white;
+}
