@@ -70,9 +70,10 @@ heartLink.addEventListener('click', function(e) {
   e.stopPropagation();
   heartContainer.classList.add('exploding');
   setTimeout(() => {
-    window.location.href = 'https://chril.xyz';
+    window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
   }, 800);
 });
 
 // Main click event
+
 document.body.addEventListener("pointerdown", handleClick);
