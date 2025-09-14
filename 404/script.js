@@ -1,12 +1,19 @@
-const line1Text = "*  The page not found";
-const line2Text = "*  Stay determined";
+// Fixed and optimized script
+const line1Text = "* The page not found . . .";
+const line2Text = "* Stay determined !";
 
 const line1 = document.getElementById("line1");
 const line2 = document.getElementById("line2");
+const frame = document.querySelector(".frame");
+const hint = document.getElementById("hint");
+const heartContainer = document.querySelector('.heart-container');
+const heartLink = document.querySelector('.heart-link');
+const heart = document.querySelector('.heart');
+const heartBgEffect = document.querySelector('.heart-bg-effect');
+const heartSound = new Audio("/404/heart-sound.mp3");
 
 const typeSound = new Audio("/404/tlk-snd.mp3");
 let soundEnabled = false;
-
 let step = 0;
 
 function playBeep() {
@@ -32,31 +39,40 @@ function typeText(element, text, callback) {
 function handleClick() {
   if (step === 0) {
     soundEnabled = true;
-    typeText(line1, line1Text);  
-    step++;
-  } else if (step === 1) {
-    typeText(line2, line2Text);
-    step++;
-  }
-}
-
-// ربط التفاعل
-document.body.addEventListener("click", handleClick);
-document.body.addEventListener("touchstart", handleClick);
-
-const hint = document.getElementById("hint");
-
-function handleClick() {
-  if (step === 0) {
-    soundEnabled = true;
     typeText(line1, line1Text);
-
+    
     hint.style.opacity = 0;
     setTimeout(() => hint.style.display = "none", 100);
-
+    
     step++;
   } else if (step === 1) {
     typeText(line2, line2Text);
     step++;
+  } else if (step === 2) {
+    frame.classList.add("move");
+    
+    // تأثير الخلفية أولاً
+    heartBgEffect.classList.add('animate');
+    
+    // ثم القلب الرئيسي مع الصوت وتأثير قوس قزح
+    setTimeout(() => {
+      heartContainer.classList.add('visible');
+      heartSound.currentTime = 0;
+      heartSound.play().catch(() => {});
+    }, 800);
+    
+    step++;
   }
 }
+
+// Event listener for heart click
+heartLink.addEventListener('click', function(e) {
+  e.stopPropagation();
+  heartContainer.classList.add('exploding');
+  setTimeout(() => {
+    window.location.href = 'https://chril.xyz';
+  }, 800);
+});
+
+// Main click event
+document.body.addEventListener("pointerdown", handleClick);

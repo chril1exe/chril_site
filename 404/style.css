@@ -6,6 +6,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 @font-face {
@@ -16,34 +18,322 @@ body {
 p {
   font-family: pixfont, monospace;
   color: white;
+  margin: 10px 0;
+  font-size: 1.1em;
 }
 
 h1 {
   font-family: pixfont, monospace;
   color: white;
+  margin: 0 0 20px 0;
 }
 
 .frame {
   border: 5px solid white;
-  padding: 16px;
+  padding: 20px;
   text-align: left;
-  max-width: 800px;
-  width: auto;
-  max-height: 300px;
+  max-width: 400px;
+  width: 80%;
+  background: rgba(0, 0, 0, 0.8);
+  transition: transform 0.8s ease-in-out;
+}
+
+.frame.move {
+  transform: translateY(100vh);
 }
 
 .yellow_shit {
   color: yellow;
   text-align: center;
   display: block;
-  font-size: 1.3em;
+  font-size: 2em;
+  margin-bottom: 20px;
 }
 
 .hint {
   color: #888;
+  font-family: pixfont, monospace;
   font-size: 0.9em;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
   opacity: 1;
   transition: opacity 0.6s ease;
+  animation: blink 2s infinite;
 }
+
+@keyframes blink {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.3; }
+}
+
+/* Enhanced Heart Container */
+.heart-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 1000;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
+.heart-container.visible {
+  opacity: 1;
+  pointer-events: auto;
+  animation: heartAppear 1s ease-out;
+}
+
+@keyframes heartAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+  }
+}
+
+.heart-link {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.heart-link:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2) drop-shadow(0 0 30px rgba(255, 100, 150, 0.8));
+}
+
+.heart-link:hover .heart {
+  filter: hue-rotate(20deg) saturate(1.3);
+}
+
+.heart-link:hover .save-text {
+  color: #ffff99;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 153, 0.8),
+    1px 1px 0 black,
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black;
+}
+
+/* Heart Image */
+.heart {
+  width: 120px;
+  height: 120px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  animation: heartbeat 3s infinite ease-in-out;
+  display: block;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(255, 50, 100, 0.3));
+}
+
+/* Keep original heartbeat animation unchanged */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Save Text Enhancements */
+.save-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: pixfont, monospace;
+  font-size: 20px;
+  text-shadow: 
+    1px 1px 0 black,
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Click Effects */
+.heart-link:active {
+  transform: scale(0.95);
+  filter: brightness(1.5) drop-shadow(0 0 40px rgba(255, 150, 200, 1));
+}
+
+.heart-link:active .save-text {
+  transform: translate(-50%, -50%) scale(1.1);
+  color: #ffffff;
+}
+
+/* Explosion Effect Enhancement */
+.heart-container.exploding .heart {
+  animation: explode 0.9s forwards;
+}
+
+@keyframes explode {
+  0% { 
+    transform: scale(1); 
+    opacity: 1; 
+    filter: brightness(1) drop-shadow(0 0 10px rgba(255, 50, 100, 0.3));
+  }
+  30% { 
+    transform: scale(1.5); 
+    filter: brightness(2) drop-shadow(0 0 50px rgba(255, 255, 255, 1));
+  }
+  100% { 
+    transform: scale(3); 
+    opacity: 0; 
+    filter: brightness(3) drop-shadow(0 0 100px rgba(255, 255, 255, 0));
+  }
+}
+
+.heart-container.exploding .save-text {
+  animation: textExplode 0.9s forwards;
+}
+
+@keyframes textExplode {
+  0% { 
+    transform: translate(-50%, -50%) scale(1); 
+    opacity: 1; 
+    color: white;
+  }
+  30% { 
+    transform: translate(-50%, -50%) scale(1.3); 
+    color: #ffff00;
+    text-shadow: 
+      0 0 20px rgba(255, 255, 153, 1),
+      1px 1px 0 black,
+      -1px -1px 0 black,
+      1px -1px 0 black,
+      -1px 1px 0 black;
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(2); 
+    opacity: 0; 
+  }
+}
+
+/* Enhanced Background Heart Effect */
+.heart-bg-effect {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background: url('/404/heart.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.heart-bg-effect.animate {
+  animation: bgHeartExplode 2s forwards;
+}
+
+@keyframes bgHeartExplode {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0.6;
+    filter: hue-rotate(90deg) brightness(1.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(5);
+    opacity: 0.4;
+    filter: hue-rotate(180deg) brightness(1.2);
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(7);
+    opacity: 0.2;
+    filter: hue-rotate(270deg) brightness(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+    filter: hue-rotate(360deg) brightness(0.8);
+  }
+}
+
+/* Enhanced Floating Animation for Heart */
+.heart-container.visible:not(.exploding) .heart {
+  animation: heartbeat 3s infinite ease-in-out, heartFloat 3s infinite ease-in-out;
+}
+
+/* Enhanced Floating Animation for Save Text */
+.heart-container.visible:not(.exploding) .save-text {
+  animation: saveTextFloat 3s infinite ease-in-out;
+}
+
+@keyframes heartFloat {
+  0%, 100% { 
+    transform: translateY(0px); 
+    filter: drop-shadow(0 0 10px rgba(255, 50, 100, 0.3));
+  }
+  25% { 
+    transform: translateY(-8px); 
+    filter: drop-shadow(0 0 15px rgba(255, 50, 100, 0.4));
+  }
+  50% { 
+    transform: translateY(-15px); 
+    filter: drop-shadow(0 0 20px rgba(255, 50, 100, 0.5));
+  }
+  75% { 
+    transform: translateY(-8px); 
+    filter: drop-shadow(0 0 15px rgba(255, 50, 100, 0.4));
+  }
+}
+
+@keyframes saveTextFloat {
+  0%, 100% { 
+    transform: translate(-50%, -50%) translateY(0px);
+    text-shadow: 
+      1px 1px 0 black,
+      -1px -1px 0 black,
+      1px -1px 0 black,
+      -1px 1px 0 black;
+  }
+  25% { 
+    transform: translate(-50%, -50%) translateY(-8px);
+    text-shadow: 
+      0 0 5px rgba(255, 255, 255, 0.3),
+      1px 1px 0 black,
+      -1px -1px 0 black,
+      1px -1px 0 black,
+      -1px 1px 0 black;
+  }
+  50% { 
+    transform: translate(-50%, -50%) translateY(-15px);
+    text-shadow: 
+      0 0 8px rgba(255, 255, 255, 0.5),
+      1px 1px 0 black,
+      -1px -1px 0 black,
+      1px -1px 0 black,
+      -1px 1px 0 black;
+  }
+  75% { 
+    transform: translate(-50%, -50%) translateY(-8px);
+    text-shadow: 
+      0 0 5px rgba(255, 255, 255, 0.3),
+      1px 1px 0 black,
+      -1px -1px 0 black,
+      1px -1px 0 black,
+      -1px 1px 0 black;
+  }
+}
+
