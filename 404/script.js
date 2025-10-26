@@ -1,4 +1,3 @@
-// Fixed and optimized script
 const line1Text = "* The page not found . . .";
 const line2Text = "* Stay determined !";
 
@@ -51,10 +50,8 @@ function handleClick() {
   } else if (step === 2) {
     frame.classList.add("move");
     
-    // تأثير الخلفية أولاً
     heartBgEffect.classList.add('animate');
     
-    // ثم القلب الرئيسي مع الصوت وتأثير قوس قزح
     setTimeout(() => {
       heartContainer.classList.add('visible');
       heartSound.currentTime = 0;
@@ -65,7 +62,6 @@ function handleClick() {
   }
 }
 
-// Event listener for heart click
 heartLink.addEventListener('click', function(e) {
   e.stopPropagation();
   heartContainer.classList.add('exploding');
@@ -74,6 +70,6 @@ heartLink.addEventListener('click', function(e) {
   }, 800);
 });
 
-// Main click event
 
 document.body.addEventListener("pointerdown", handleClick);
+
